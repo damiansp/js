@@ -12,3 +12,8 @@ console.log(1/0);
 var notANumber = 'hi' * 5;
 console.log(notANumber);        // NaN
 console.log(typeof notANumber); // 'number'
+
+console.log(Number.isFinite(1/0));       // false
+console.log(Number.isFinite(-Infinity)); // false
+console.log(Number.isFinite(NaN));       // false
+console.log(Number.isFinite(42));        // true
