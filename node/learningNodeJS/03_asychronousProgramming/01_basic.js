@@ -2,7 +2,7 @@ var fs = require(fs);
 var file;
 
 
-// Broken:
+// Intentionally Broken:
 /*
 var  buf = new Buffer(100000);
 
