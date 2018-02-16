@@ -126,7 +126,36 @@ console.log(JLA); // Set {}
 const shoppingSet = new Set(['apples', 'bananas', 'beans']);
 //const shoppingArray = [...shoppingSet]; // New JS notation only  // or:
 const shoppingArray2 = Array.from(shoppingSet);
-  
+
+
+
+// Weak Sets
+var array = [1, 2, 3];
+const strong = new Set().add(array);
+
+array = null;
+console.log(strong); // {[1, 2, 3]}, NOT null
+
+const array2 = [1, 2, 3];
+const weak = new WeakSet().add(array2);
+
+
+
+// Maps
+const romanNumerals = new Map();
+romanNumerals.set(1, 'I').set(2, 'II').set(3, 'III').set(4, 'IV').set(5, 'V');
+console.log(romanNumerals);
+console.log(romanNumerals.has(5)); // true
+console.log(romanNumerals.get(5)); // 'V'
+console.log(romanNumerals.size);   // 5
+romanNumerals.delete(4);
+console.log(romanNumerals);
+romanNumerals.clear();
+console.log(romanNumerals);
+
+//console.log([...romanNumerals]); // to array
+console.log(Array.from(romanNumerals)); // to array
+
 
   
 
