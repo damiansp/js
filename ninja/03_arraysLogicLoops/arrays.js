@@ -155,7 +155,3 @@ console.log(romanNumerals);
 
 //console.log([...romanNumerals]); // to array
 console.log(Array.from(romanNumerals)); // to array
-
-
-  
-
