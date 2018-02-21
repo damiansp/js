@@ -108,7 +108,7 @@ function handleGetAlbum(req, res) {
 
   loadAlbum(albumName, (err, albumContents) => {
       if (err && err.error == 'nuSuchAlbum') { sendFailure(res, 404, err); }
-      else if (ierr) { sendFailure(res, 500, err); }
+      else if (err) { sendFailure(res, 500, err); }
       else { sendSuccess(res, {albumData: albumContents}); }
    });
 }
