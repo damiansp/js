@@ -1,5 +1,6 @@
 var http = require('http'),
-  fs = require('fs');
+  fs     = require('fs'),
+  url    = require('url');
 var s = http.createServer(handleIncomingRequest);
 
 s.listen(8080);
@@ -40,7 +41,7 @@ function loadAlbumList(callback) {
 }
 
 
-function loadAlbum(albumName, callback) {
+function loadAlbum(albumName, page, pageSize, callback) {
   fs.readdir('albums/' + albumName, (err, files) => {
       if (err) {
         if(err.code == 'ENOENT') { callback(noSuchAlbum()); }
@@ -53,7 +54,10 @@ function loadAlbum(albumName, callback) {
 
       var iterator = (index) => {
         if (index == files.length) {
-          var obj = {shortName: albumName, photos: onlyFiles};
+          // slice fails gracefully if params out of range
+          var start = page * pageSize;
+          var ps = onlyFiles.slice(start, start + pageSize);
+          var obj = {shortName: albumName, photos: ps};
 
           callback(null, obj);
           return;
@@ -81,10 +85,13 @@ function loadAlbum(albumName, callback) {
 
 
 function handleIncomingRequest(req, res) {
+  req.parsed_url = url.parse(req.url, true);
+  var coreUrl = req.parsed_url.pathname;
+  
   console.log('INCOMING REQUEST:' + req.method + ' ' + req.url);
-  if (req.url == '/albums.json') { handleListAlbums(req, res); }
-  else if (req.url.substr(0, 7) == '/albums' &&
-           req.url.substr(req.url.length - 5) == '.json') {
+  if (coreUrl == '/albums.json') { handleListAlbums(req, res); }
+  else if (coreUrl.substr(0, 7) == '/albums'
+           && coreUrl.substr(coreUrl.length - 5) == '.json') {
     handleGetAlbum(req, res);
   } else { sendFailure(res, 404, invalidResource()); }
 }
@@ -103,10 +110,19 @@ function handleListAlbums(req, res) {
 
 
 function handleGetAlbum(req, res) {
-  // request format: /albums/albumName.json
-  var albumName = req.url.substr(7, req.url.length - 12);
+  // Get GET params
+  var getp = req.parsed_url.query;
+  var pageNum = getp.page ? parseInt(getp.page) : 0;
+  var pageSize = getp.page_size ? parseInt(getp.page) : 1000;
 
-  loadAlbum(albumName, (err, albumContents) => {
+  if (isNaN(parseInt(pageNum))) { pageNum = 0; }
+  if (isNaN(parseInt(pageSize))) { pageSize = 1000; }
+  
+  // request format: /albums/albumName.json
+  var coreUrl = req.parsed_url.pathname;
+  var albumName = coreUrl.substr(7, coreUrl.length - 12);
+
+  loadAlbum(albumName, pageNum, pageSize, (err, albumContents) => {
       if (err && err.error == 'nuSuchAlbum') { sendFailure(res, 404, err); }
       else if (err) { sendFailure(res, 500, err); }
       else { sendSuccess(res, {albumData: albumContents}); }
