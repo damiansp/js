@@ -1,7 +1,7 @@
-// 1
+/** 1 */
 console.log(eval('3 + 2'));
 
-// 2 Global eval()
+/** 2 Global eval() */
 var geval = eval;
 var x = y = 'global';
 
@@ -19,3 +19,6 @@ function g() {
 
 console.log(f(), x); // local-changed global
 console.log(g(), y); // local global-changed
+
+
+/** 3 Strict eval() */
