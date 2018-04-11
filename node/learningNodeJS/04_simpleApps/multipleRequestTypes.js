@@ -87,11 +87,15 @@ function loadAlbum(albumName, page, pageSize, callback) {
 function handleIncomingRequest(req, res) {
   req.parsed_url = url.parse(req.url, true);
   var coreUrl = req.parsed_url.pathname;
-  
-  console.log('INCOMING REQUEST:' + req.method + ' ' + req.url);
-  if (coreUrl == '/albums.json') { handleListAlbums(req, res); }
-  else if (coreUrl.substr(0, 7) == '/albums'
-           && coreUrl.substr(coreUrl.length - 5) == '.json') {
+
+  if (coreUrl == '/albums.json' && req.method.toLowerCase() == 'get') {
+    handleListAlbums(req, res);
+  } else if (coreUrl.substr(coreUrl.length - 12) == '/rename.json'
+             && req.method.toLowerCase() == 'post') {
+    handleRenameAlbum(req, res);
+  } else if (coreUrl.substr(0, 7) == '/albums'
+             && coreUrl.substr(coreUrl.length - 5) == '.json'
+             && req.method.toLowerCase() == 'get') {
     handleGetAlbum(req, res);
   } else { sendFailure(res, 404, invalidResource()); }
 }
