@@ -166,3 +166,36 @@ function invalidResource() {
 function noSuchAlbum() {
   return makeError('noSuchAlbum', 'The specified album does not exist');
 }
+
+
+function handle_rename_album(req, res) {
+  // 1. Get album name from URL
+  var core_url = req.parsed_url.pathname;
+  var parts = core_url.split('/');
+
+  if (parts.length != 4) {
+    send_failures(res, 404, invalid_resource());
+    return;
+  }
+
+  var album_name = parts[2];
+
+  // 2. Get the POST data for the request. This will have the JSON for the new
+  //    album name.
+  var json_body = '';
+
+  req.on('readable', () => {
+      var d = req.read();
+
+      if (d) {
+        if (typeof d == 'string') { json_body += d; }
+        else if (typeof d == 'object' && d instanceof Buffer) {
+            json_body += d.toString('utf8');
+        }
+      }
+  });
+
+  // 3. 
+
+    
+}
