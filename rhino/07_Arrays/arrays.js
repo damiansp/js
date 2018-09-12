@@ -29,3 +29,8 @@ o = {};
 o[1] = 'one';
 console.log(o); // {'1': 'one'}
 
+a[-1.23] = true;
+a['10'] = 0;
+console.log(a[1.000]); // sameas a[1]
+console.log(a); // ['world', 3.14, 3, 'world', , , , , , 0, '-1.23': true]
+
