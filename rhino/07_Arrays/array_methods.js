@@ -90,3 +90,31 @@ console.log([1, 2, 3].toString()); // '1,2,3'
 console.log(['a', 'b', 'c'].toString()); // 'a,b,c'
 console.log([1, ['b', 3]].toString());   // '1,b,3'
 
+
+// every(), some()
+a = [1, 2, 3, 4, 5];
+console.log(a.every(function(x) { return x < 10; })); // true
+console.log(a.every(function(x) { return x % 2 == 0; })); // false
+console.log(a.some(function(x) { return x % 2 == 0; }));  // true
+console.log(a.some(isNaN));                              // false
+
+
+// reduce(), reduceRight()
+var sum = a.reduce(function(x, y) { return x + y; }, 0);
+console.log(sum); // 15
+var prod = a.reduce(function(x, y) { return x * y; }, 1);
+console.log(prod); // 120
+var max = a.reduce(function(x, y) { return (x > y) ? x : y; });
+console.log(max); // 5
+
+a = [2, 3, 4];
+// 2^(3^4)
+var big = a.reduceRight(
+  function(accumulator, value) { return Math.pow(value, accumulator); });
+console.log(big); // 2.42e24
+
+var objects = [{x: 1, a: 1}, {y: 2, a: 2}, {z: 3, a: 3}];
+var leftUnion = objects.reduce(union);
+console.log(leftUnion);
+var rightUnion = objects.reduceRight(union);
+console.log(rightUnion);
