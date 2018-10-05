@@ -7,4 +7,6 @@ npm install x@"^1.0.0" # all minor version changes
 npm ls                 # list installed packages
 npm rm x               # remove x
 npm unistall x         # same
-
+npm outdated           # show installed with available upgrades
+npm update [--save]    # update
+-g                     # global flag
