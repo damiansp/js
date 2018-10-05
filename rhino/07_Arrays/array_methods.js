@@ -114,7 +114,30 @@ var big = a.reduceRight(
 console.log(big); // 2.42e24
 
 var objects = [{x: 1, a: 1}, {y: 2, a: 2}, {z: 3, a: 3}];
-var leftUnion = objects.reduce(union);
-console.log(leftUnion);
-var rightUnion = objects.reduceRight(union);
-console.log(rightUnion);
+//var leftUnion = objects.reduce(union);
+//console.log(leftUnion);
+//var rightUnion = objects.reduceRight(union);
+//console.log(rightUnion);
+
+
+// indexOf(), lastIndexOf()
+a = [0, 1, 2, 1, 0];
+console.log(a.indexOf(1)); // 1
+console.log(a.lastIndexOf(1)); // 3
+console.log(a.indexOf(3));     // -1 (no such element)
+
+// Find all occurrences of a value x in an array a and return matching indices
+function findall(a, x) {
+  var results = [],
+    len = a.length,
+    pos = 0;
+  while(pos < len) {
+    pos = a.indexOf(x, pos);
+    if (pos === -1) break;
+    results.push(pos);
+    pos += 1;
+  }
+  return results;
+}
+            
+  
