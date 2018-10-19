@@ -1,8 +1,17 @@
+# OS
+#------------------------
+.DS_Store
 *~
 
+
+# Node
+#------------------------
 node_modules
-
 require.js
+package-lock.json
 
+
+# File types
+#------------------------
 *.jpg
 *.txt
