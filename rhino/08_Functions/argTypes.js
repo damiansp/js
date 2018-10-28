@@ -14,3 +14,20 @@ function sum(a) {
     return total;
   } else throw new Error("sum(): argument must be array-like");
 }
+
+
+function flexisum(a) {
+  var total = 0;
+  for (var i = 0; i < a.length; i++) {
+    var element = a[i],
+      n;
+    if (element == null) continue;
+    else if (typeof element === 'function') n = Number(element());
+    else n = Number(element);
+    if (isNaN(n)) {
+      throw Error('flexisum(): cannot convert ' + element + ' to number');
+    }
+    total += n;
+  }
+  return total
+}
