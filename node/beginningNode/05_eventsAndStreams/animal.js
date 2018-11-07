@@ -30,9 +30,18 @@ Frog.prototype.jump = function(destination) {
   console.log(this.name, 'is jumping to', destination);
 };
 
-
-
-
+function Weasel(name) {
+  this.name = name;
+}
+Weasel.prototype = Object.create(
+  Animal.prototype,
+  {constructor: {value: Weasel,
+                 enumerable: false,
+                 writable: true,
+                 configurable: true}});
+Weasel.prototype.scurry = function(destination) {
+  console.log(this.name, 'is scurrying to', destination);
+};
 
 
 var animal = new Animal('elephant');
@@ -46,3 +55,7 @@ var frog = new Frog('R. pipens');
 frog.walk('the pond');
 frog.jump('the brush');
 
+var weasel = new Weasel('Martin Fisher');
+weasel.walk('the dam');
+weasel.scurry('the lodge');
+console.log(weasel.constructor === Weasel); // true
