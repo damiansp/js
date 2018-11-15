@@ -82,7 +82,18 @@ console.log(o.getName()); // Frank
 //o.setName(0); // Error - wrong type
 
 
-function costfunc(v) { return function() { return v; };}
+function constfunc(v) { return function() { return v; };}
 var funcs = [];
-for (var i = 0; i < 10; i++) funcs[i] = costfunc(i);
+for (var i = 0; i < 10; i++) funcs[i] = constfunc(i);
 console.log(funcs[5]()); // 5
+
+
+function constFuncs() {
+  var funcs = [];
+  for (var i = 0; i < 10; i++) funcs[i] = function() { return i; };
+  return funcs;
+}
+
+var funcs = constFuncs();
+console.log(funcs[5]()); // 10
+for (var i = 0; i < 10; i++) console.log(funcs[i], funcs[i]());
