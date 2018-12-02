@@ -37,3 +37,29 @@ console.log(partialLeft(f, 2)(3, 4));        // -2 = 2 * (3 - 4)
 console.log(partialRight(f, 2)(3, 4));       // 6  = 3 * (4 - 2)
 console.log(partial(f, undefined, 2)(3, 4)); // -6 = 3 * (2 - 4)
   
+var increment = partialLeft(sum, 1);
+var cuberoot = partialRight(Math.pow, 1/3);
+String.prototype.first = partial(String.prototype.charat, 0);
+String.prototype.last = partial(String.prototype.substr, -1, 1);
+
+var not = partialLeft(compose, function(x) { return !x; });
+var even = function(x) { return x % 2 == 0; };
+var odd = not(even);
+var isNumber = not(isNaN);
+
+var data = [1, 1, 3, 5, 5];
+var sum = function(x, y) { return x + y; };
+var product = function(x, y) { return x * y; };
+var neg = partial(product, -1);
+var square = partial(Math.pow, undefined, 2);
+var sqrt = partial(Math.pow, undefined, 0.5);
+var reciprocal = partial(Math.pow, undefined, -1);
+var mean = product(reduce(data, sum), reciprocal(data.length));
+var stddev = sqrt(product(
+  reduce(
+    map(data,
+        compose(square,
+                partial(sum, neg(mean)))),
+    sum),
+  reciprocal(sum(data.length, -1))));
+console.log(mean, stddev);
