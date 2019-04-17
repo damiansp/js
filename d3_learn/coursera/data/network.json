@@ -4,7 +4,9 @@
     {"id": "Marcus"},
     {"id": "Jane"},
     {"id": "Clara"},
-    {"id": "Nellie"}
+    {"id": "Nellie"},
+    {"id": "Ada"},
+    {"id": "Bob"}
   ],
   "links": [
     {"source": "Marcus", "target": "Jane"},
@@ -13,6 +15,11 @@
     {"source": "John", "target": "Jane"},
     {"source": "Marcus", "target": "Clara"},
     {"source": "John", "target": "Nellie"},
-    {"source": "Jane", "target": "Nellie"}
+    {"source": "Jane", "target": "Nellie"},
+    {"source": "Ada", "target": "Nellie"},
+    {"source": "Ada", "target": "John"},
+    {"source": "Ada", "target": "Jane"},
+    {"source": "Ada", "target": "Bob"},
+    {"source": "Bob", "target": "Clara"}
   ]
 }

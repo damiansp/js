@@ -1,0 +1,31 @@
+{
+  "name": "USA",
+  "children": [
+  	{
+  		"name": "New York",
+  		"children": [
+  			{
+  				"name": "Albany",
+  				"sales": 5000
+  			},
+  			{
+  				"name": "New York City",
+  				"sales": 9800
+  			}
+  		]
+  	}, 
+  	{
+  		"name": "California",
+  		"children": [
+  			{
+  				"name": "San Francisco",
+  				"sales": 6500
+  			},
+  			{
+  				"name": "Los Angeles",
+  				"sales": 8400
+  			}
+  		]
+  	}
+  ] 
+}
