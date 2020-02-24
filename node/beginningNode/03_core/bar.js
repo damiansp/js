@@ -1,10 +1,10 @@
-var foo = require('./foo');
-var callItWhatever = require('./foo');
-var iNeedThree = true;
+let foo = require('./foo');
+let callItWhatever = require('./foo');
+let iNeedThree = true;
 
 foo();
 callItWhatever();
 if (iNeedThree) {
-  var three = require('./foo');
+  let three = require('./foo');
   three();
 }
