@@ -7,7 +7,7 @@ someClass.prototype.someMemberFunction = function () {
   this.someProperty = 'modified value';
 };
 
-var instance = new someClass();
+let instance = new someClass();
 
 console.log(instance.someProperty); // some initial value
 instance.someMemberFunction();
