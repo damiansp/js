@@ -1,0 +1,11 @@
+{
+  "name": "helloworld",
+  "version": "1.0.0",
+  "description": "learning react",
+  "main": "componentsAndProps.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Damian Satterthwaite-Phillips <dsatterthwaite@cbtnuggets.com>",
+  "license": "ISC"
+}
