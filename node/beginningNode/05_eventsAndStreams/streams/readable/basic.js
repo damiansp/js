@@ -1,4 +1,4 @@
-process.stdin.on('readbale', function() {
+process.stdin.on('readable', function() {
     var buf = process.stdin.read();
     
     if (buf != null) {
