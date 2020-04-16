@@ -14,7 +14,6 @@ var mimeLookup = {
   '.js': 'application/javascript',
   '.html': 'text/html'};
 
-
 var server = http.createServer(function (req, res) {
     if (req.method == 'GET') {
       // Resolve file path to file system path
