@@ -57,4 +57,55 @@ class LoginControl extends React.Component {
 }
 
 
+// Conditional rendering with ? :
+render() {
+  const isLoggedIn = this.state.isLoggedIn;
+  return (
+    <div>The user is<b>{isLoggedIn ? 'currently' : 'not'}</b> logged in</div>);
+}
+
+
+render() {
+  const isLoggedIn = this.state.isLoggedIn;
+  return (
+    <div>
+      {isLoggedIn ? <LogoutButton onClick={this.handleLogoutClick} />
+       : <LoginButton onClick={ths.handleLoginClick} />}
+    </div>);
+}
+
+
 ReactDOM.render(<LoginControl />, document.getElementById('root'));
+
+
+// Prevent component from rendering
+function WarningBanner(props) {
+  if (!props.warn) { return null; } /* voila! */
+  return <div className="warning">Warning!</div>
+}
+
+
+class Page extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {showWarning: true};
+    this.handleToggleClick = this.handleToggleClick.bind(this);
+  }
+
+  handleToggleClick() {
+    this.setState(state => ({ showWarning: !state.showWarning }))
+  }
+
+  render() {
+    return (
+      <div>
+        <WarningBanner warn={this.state.showWarning} />
+        <button onClick={this.handleToggleClick}>
+          {this.state.showWarning ? 'Hide' : 'Show'}
+        </button>
+      </div>);
+  }
+}
+
+
+ReactDOM.render(<Page />, document.getElementById('root'));
