@@ -7,13 +7,14 @@
 # Node
 #------------------------
 node_modules
-require.js
 package-lock.json
+require.js
 
 
 # File types
 #------------------------
-*.jpg
-*.txt
 *.csv
 *.gz
+*.jpg
+*.pem
+*.txt
