@@ -63,3 +63,17 @@ console.log(greeting); // Hello, Boris.
 console.log(`\n`.length);           // 1
 console.log(String.raw`\n`.length); // 2
 
+
+// 5 Pattern Patching
+/^HTML/;
+/[1-9][0-9]*/;
+/\bjavascript\b/i; // match "javascript" as a word, case-insensitive
+
+let text = 'testing: 1, 2, 3';
+let pattern = /\d+/g;              // one or more digits
+console.log(pattern.test(text));   // true (match exists)
+console.log(text.search(pattern)); // 9
+console.log(text.match(pattern));  // ["1", "2", "3"]
+console.log(text.replace(pattern, 'yo')); // testing: yo, yo, yo
+console.log(text.split(/\D+/));           // ["", "1", "2", "3"]
+  
