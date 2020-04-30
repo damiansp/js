@@ -1,0 +1,6 @@
+#draw-target {
+    width: 480px;
+    height: 320px;
+    background-color: #000;
+    position: relative;
+}
