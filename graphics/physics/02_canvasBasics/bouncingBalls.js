@@ -4,7 +4,7 @@ const radius = 20;
 const nBalls = 30;
 const color = '#DEAD00';
 const g = 0.1; // gravitational acceleration
-
+let isDragging = false;
 
 window.onload = init;
 
@@ -41,7 +41,27 @@ function init() {
   }
   canvas.addEventListener('mousedown', stopAnim, false);
   canvas.addEventListener('mouseup', startAnim, false);
+  /*
+  canvas.addEventListener('mousedown', function() {
+      canvas.addEventListener('mousemove', onDrag, false);
+      canvas.addEventListener('mouseup', onDrop, false);
+  }, false);
+  */
   startAnim();
+}
+
+
+function onDrag(evt) {
+  isDragging = true;
+  ball.x = evt.clientX;
+  ball.y = evt.clientY;
+}
+
+
+function onDrop(evt) {
+  isDragging = false;
+  canvas.removeEventListener('mousemove', onDrag, false);
+  canvas.removeEventListener('mouseup', onDrop, false);
 }
 
 
@@ -64,11 +84,12 @@ function onEachStep() {
     ball.y += ball.vy;
     if (ball.y > canvas.height - radius) {
       ball.y = canvas.height - radius;
-      ball.vy *= -0.9;
+      ball.vy *= -0.95;
     }
     if (ball.x > canvas.width + radius) {
       ball.x = -radius;
     }
+    ball.vx *= 0.999;
     ball.draw(ctx);
   }
 }
