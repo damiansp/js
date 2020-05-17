@@ -14,12 +14,3 @@ Ball.prototype.draw = function(ctx) {
   ctx.closePath();
   ctx.fill();
 };
-
-
-let canvas = document.getElementById('canvas');
-let ctx = canvas.getContext('2d');
-let ball = new Ball(50, '#0000ff');
-ball.x = 100;
-ball.y = 100;
-ball.draw(ctx);
-  
