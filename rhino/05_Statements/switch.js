@@ -1,7 +1,7 @@
 function convert(x) {
   switch(typeof x) {
   case 'number':
-    return x.toString(16);
+    return x.toString(16); // base 16 rendering
   case 'string':
     return '"' + x + '"';
   default:
