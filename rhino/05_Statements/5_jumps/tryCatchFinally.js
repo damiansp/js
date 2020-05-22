@@ -6,8 +6,8 @@ function factorial(x) {
 
 
 try {
-  var n = Number(prompt('Gimme a positive integer:', ''));
-  var f = factorial(n);
+  let n = Number(prompt('Gimme a positive integer:', ''));
+  let f = factorial(n);
   console.log(n + '! = ' + f);
 } catch (e) {
   console.log(e);
