@@ -66,3 +66,9 @@ let surname = undefined;
 if (book) {
   if (book.author) { surname = book.author.surname; }
 }
+
+console.log(surname);
+//surname = book?.author?.surname;
+//console.log(surname);
+
+
