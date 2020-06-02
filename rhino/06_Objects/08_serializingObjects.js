@@ -1,6 +1,6 @@
-var o = {x: 1, y: {z: [false, null, ""]}};
-var s = JSON.stringify(o);
-var p = JSON.parse(s);
+let o = {x: 1, y: {z: [false, null, ""]}};
+let s = JSON.stringify(o);
+let p = JSON.parse(s);
 
 console.log(s);
 console.log(p);
