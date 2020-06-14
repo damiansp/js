@@ -1,0 +1,14 @@
+{
+  "name": "recipe_connection",
+  "version": "1.0.0",
+  "description": "An app to share cooking recipes",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"No test specified\" && exit 1"
+  },
+  "author": "damiansp",
+  "license": "ISC",
+  "dependencies": {
+    "cities": "^2.0.0"
+  }
+}
