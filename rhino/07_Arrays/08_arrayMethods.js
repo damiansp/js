@@ -70,3 +70,69 @@ console.log(phrases.map(phrase => phrase.split(' ')).flat()); // same
 console.log(
   [-9, -4, -1, 1, 4, 9].flatMap(x => x < 0 ? [] : Math.sqrt(x))); // 1, 2, 3
 
+
+
+// 3. Adding Arrays with concat()
+let d = [1, 2, 3];
+d = d.concat(4, 5); // [1, 2, 3, 4, 5]
+d = d.concat([4, 5], [6, 7]); // [1, 2, 3, 4, 5, 4, 5, 6, 7]
+d = d.concat(4, [5, [6, 7]]);
+console.log(d); // [1, 2, 3, 4, 5, 4, 5, 6, 7, 4, 5, [6, 7]]
+
+
+
+// 4. push(), pop(), shift(), unshift()
+let stack = [];
+stack.push(1, 2); // [1, 2]
+stack.pop();      // [1] (returns 2)
+stack.push(3);    // [1, 3]
+stack.push([4, 5]); // [1, 3, [4, 5]]
+console.log(stack.pop()); // [4, 5]
+console.log(stack);       // [1, 3]
+
+let q = [];
+q.push(1, 2); // [1, 2]
+console.log(q.shift()); //  1
+console.log(q);         // [2]
+q.push(3);
+console.log(q);         // [2, 3]
+
+let e = [];
+e.unshift(1); // [1]
+e.unshift(2); // [2, 1]
+e.unshift(3, 4);
+console.log(e); // [3, 4, 2, 1]
+
+
+
+// 5. slice(), splice(), fill(), copyWithin()
+// slice()
+let f = [1, 2, 3, 4, 5];
+console.log(f.slice(0, 3)); // returns [1, 2, 3]
+console.log(f);             // [1, 2, 3, 4, 5]
+console.log(f.slice(3));    // [4, 5]
+console.log(f.slice(1, -1)); // [2, 3, 4]
+console.log(f.slice(-4, -2)); // [2, 3]
+
+// splice()
+let g = [1, 2, 3, 4, 5, 6, 7, 8];
+console.log(g.splice(4)); // [5, 6, 7, 8]
+console.log(g);           // [1, 2, 3, 4]
+console.log(g.splice(1, 2)); // [2, 3]
+console.log(g);              // [1, 4]
+console.log(g.splice(1, 1)); // [4]
+
+let h = [1, 2, 3, 4, 5];
+console.log(h.splice(2, 0, "a", "b")); // []
+console.log(h);                        // [1, 2, "a", "b", 3, 4, 5]
+console.log(h.splice(2, 2, [1, 2], 3)); // ["a", "b"]
+console.log(h);                         // [1, 2, [1, 2], 3, 3, 4, 5]
+
+// fill()
+let i = new Array(5);
+i.fill(0);
+console.log(i); // [0, 0, 0, 0, 0]
+i.fill(9, 1);   // fill with 9s starting at idx 1
+console.log(i); // [0, 9, 9, 9, 9]
+i.fill(8, 2, -1);
+console.log(i); // [0, 9, 8, 8, 9]
