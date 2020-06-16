@@ -136,3 +136,64 @@ i.fill(9, 1);   // fill with 9s starting at idx 1
 console.log(i); // [0, 9, 9, 9, 9]
 i.fill(8, 2, -1);
 console.log(i); // [0, 9, 8, 8, 9]
+
+// copyWithin()
+let j = [1, 2, 3, 4, 5];
+j.copyWithin(1); // [1, 1, 2, 3, 4]
+j.copyWithin(2, 3, 5); // [1, 1, 3, 4, 4]
+j.copyWithin(0, -2);   // [4, 4, 3, 4, 4]
+console.log(j);
+
+
+// 6.Searching and Sorting
+let k = [0, 1, 2, 1, 0];
+console.log(k.indexOf(1)); // 1
+console.log(k.lastIndexOf(1)); // 3
+console.log(k.indexOf(3));     // -1
+
+
+function findall(a, x) {
+  let res = [],
+    len = a.length,
+    i = 0;
+  while (i < len) {
+    i = a.indexOf(x, i);
+    if (i === -1) { break; }
+    res.push(i);
+    pos++;
+  }
+  return res;
+}
+
+// includes()
+let m = [1, true, 3, NaN];
+console.log(m.includes(true)); // true
+console.log(m.includes(2));    // false
+console.log(m.includes(NaN));  // true
+console.log(m.indexOf(NaN));   // -1 (!)
+
+// sort()
+let n = ['banana', 'cherry', 'apple'];
+console.log(n.sort());
+
+let p = [33, 4, 1111, 222];
+console.log(p.sort()); // alphabet: [1111, 222, 33, 4]
+console.log(p.sort(function(a, b) { return a - b; })); // [4, 33, 222, 1111]
+console.log(p.sort((a, b) => a - b));                  // same
+
+// reverse()
+let r = [1, 3, 5];
+console.log(r.reverse()); // [5, 3, 1]
+
+
+// 7. Array to String
+console.log(r.join()); // "5,3,1"
+console.log(r.join(' ')); // "5 3 1"
+console.log(r.join(''));  // "531"
+console.log([1, [2, 'c']].toString()); // "1,2,c"
+
+
+// 8. Static Array Functions
+console.log(Array.isArray([])); // true
+console.log(Array.isArray({})); // false
+console.log(Array.isArray("xo")); // false
