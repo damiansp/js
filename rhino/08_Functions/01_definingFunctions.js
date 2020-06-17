@@ -49,3 +49,9 @@ console.log(squares);  // [1, 4, 9, 16]
 
 
 // 4. Nested Functions
+function hypot(a, b) {
+  function sq(x) { return x * x; }
+  return Math.sqrt(sq(a) + sq(b));
+}
+
+console.log(hypot(3, 4)); // 5
