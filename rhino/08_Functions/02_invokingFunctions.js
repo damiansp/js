@@ -21,3 +21,5 @@ o.m();
 
 
 // 3. Constructor Invocation
+o = new Object(); // same as:
+o = new Object;
