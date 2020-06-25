@@ -1,0 +1,11 @@
+{
+  "name": "servehtml",
+  "version": "1.0.0",
+  "description": "Serving HTML with Node.js",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo No test yet"
+  },
+  "author": "damiansp@gmail.com",
+  "license": "ISC"
+}
