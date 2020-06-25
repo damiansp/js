@@ -93,3 +93,65 @@ function vectorAdd2([x1, y1], [x2, y2]) {
 console.log(vectorAdd2([1, 2], [3, 4])); // [4, 6]
 
 
+function vectorMultiply({x, y}, scalar) {
+  return {x: x * scalar, y: y * scalar};
+}
+
+console.log(vectorMultiply({x: 2, y: 3}, 4)); // {x: 8, y: 12}
+
+
+function vectorAdd({x: x1, y: y1}, {x: x2, y: y2}) {
+  return {x: x1 + x2, y: y1 + y2};
+}
+
+console.log(vectorAdd({x: 1, y: 2}, {x: 3, y: 4})); // {x: 4, y: 6}
+
+
+function vecMult({x, y, z=0}, scalar) {
+  return {x: x * scalar, y: y * scalar, z: z * scalar};
+}
+
+console.log(vecMult({x: 2, y: 3}, 4)); // {x: 8, y: 12, z: 0}
+
+
+function arrayCopy({from, to=from, n=from.length, fromIndex=0, toIndex=0}) {
+  let valuesToCopy = from.slice(fromIndex, fromIndex + n);
+  to.splice(toIndex, 0, ...valuesToCopy);
+  return to;
+}
+
+let b = [1, 2, 3, 4, 5],
+  c = [9, 8, 7, 6, 5];
+console.log(arrayCopy({from: b, n: 3, to: c, toIndex: 4})); // 9 8 7 6 1 2 3 5
+
+
+function f([x, y, ...coords], ...rest) {
+  return [x + y, ...rest, ...coords];
+}
+
+console.log(f([1, 2, 3, 4], 5, 6)); // 3 5 6 3 4
+
+
+function vMult({x, y, z=0, ...props}, scalar) {
+  return {x: x * scalar, y: y * scalar, z: z * scalar, ...props};
+}
+
+console.log(vMult({x: 1, y: 2, w: -1}, 3)); // {x: 3, y: 6, z: 0, w: -1}
+
+
+
+// 6. Arg Types
+function sum(a) {
+  let total = 0;
+  for (let element of a) {
+    if (typeof element !== 'number') {
+      throw new TypeError('sum(): elements must be numbers');
+    }
+    total += element;
+  }
+  return total;
+}
+
+console.log(sum([1, 2, 3])); // 6
+//console.log(sum(1, 2, 3));   // TypeErr not iterable
+//console.log(sum([1, 2, '3'])); // TypeErr not a number
