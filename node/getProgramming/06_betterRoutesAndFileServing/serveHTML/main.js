@@ -1,49 +1,38 @@
 const http = require('http'),
   httpStatus = require('http-status-codes'),
   fs = require('fs');
+const router = require('./router');
 
-const port = 3000,
-  routeMap = {'/': 'views/index.html'};
 
-const getViewURL = (url) => { return `views${url}.html`; };
+const port = 3000;
+const plainContentType = {'Content-Type': 'text/plain'};
+const htmlContentType = {'Content-Type': 'text/html'};
 
-const sendErrorResponse = res => {
-  res.writeHead(httpStatus.NOT_FOUND, {'Content-Type': 'text/html'});
-  res.write('<h1>File Not Found!</h1>');
-  res.end();
+const customReadFile = (file, res) => {
+  fs.readFile(`./${file}`, (errors, data) => {
+      if (errors) console.log('Error reading the file...');
+      res.end(data);
+  });
 };
 
 
-http.createServer((req, res) => {
-    let url = req.url;
-    if (url.indexOf('.html') !== -1) {
-      res.writeHead(httpStatus.OK, {'Content-Type': 'text/html'});
-      customReadFile(`./public/viewss${url}`, res);
-    } else if (url.indexOf('.js') !=== -1) {
-      res.writeHead(httpStatus.OK, {'Content-Type': 'text/javascript'});
-      customReadFile(`./public/js${url}`, res);
-    } else if (url.indexOf('.css') !== -1) {
-      res.writeHead(httpStatus.OK, {'Content-Type': 'text/css'});
-      customReadFile(`./public/css${url}`, res);
-    } ese if (url.indexOf('.png') !== -1) {
-      res.writeHead(httpStatus.OK, {'Content-Type': 'image/png'});
-      customReadFile(`./public/images${url}`, res);
-    } else sendErrorResponse(res);
-}).listen(port);
+router.get('/', (req, res) => {
+    res.writeHead(httpStatus.OK, plainContentType);
+    res.end('INDEX');
+});
 
+router.get('/index.html', (req, res) => {
+    res.writeHead(httpStatus.OK, htmlContentType);
+    customReadFile('views/index.html', res)
+});
+
+router.post('/', (req, res) => {
+    res.writeHead(httpStatus.OK, plainContentType);
+    res.end('POSTED');
+})
+
+http.createServer(router.handle).listen(port);
 console.log(`The server is listening on port ${port}`);
 
 
-const customReadFile = (filePath, res) => {
-  if (fs.existsSync(filePath)) {
-    fs.readFile(filePath, (error, data) => {
-        if (error) {
-          console.log(error);
-          sendErrorResponse(res);
-          return;
-        }
-        res.write(data);
-        res.end();
-    });
-  } else sendErrorResponse(res);
-};
+
