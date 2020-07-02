@@ -5,7 +5,7 @@ function Vector2D(x, y) {
 
 
 Vector2D.prototype = {
-  lengthSquared: function() { return this.x*this.x +this.y*this.y; },
+  lengthSquared: function() { return this.x*this.x + this.y*this.y; },
 
   length: function() { return Math.sqrt(this.lengthSquared()); },
 
@@ -59,6 +59,3 @@ Vector2D.distance = function(vec1, vec2) {
 Vector2D.angleBetween = function(vec1, vec2) {
   return Math.acos(vec1.dotProduct(vec2) / (vec1.length() * vec2.length()));
 };
-  
-
-  
