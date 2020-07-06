@@ -20,7 +20,7 @@ Ball.prototype = {
     this.y = pos.y;
   },
 
-  get velo2D() { return new Vector2D(this.vx, this.vy); }
+  get velo2D() { return new Vector2D(this.vx, this.vy); },
 
   set velo2D(velo) {
     this.vx = velo.x;
