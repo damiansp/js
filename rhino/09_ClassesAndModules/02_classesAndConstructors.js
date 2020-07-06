@@ -29,3 +29,25 @@ let r = new Range(1, 3);
 console.log(r.includes(2)); // true
 console.log(r.toString());  // (1...3)
 console.log([...r]);        // [1, 2, 3]
+
+
+
+// 1. Constructors, Class Identity and `instanceof`
+function Strange() {;}
+Strange.prototype = Range.prototype;
+console.log(new Strange() instanceof Range); // true
+
+
+
+// 2. The `constructor` Property
+let F = function() {;};
+let p = F.prototype;
+let c = p.constructor;
+console.log(c === F); // true
+
+let o = new F();
+console.log(o.constructor === F); // true
+
+
+  
+
