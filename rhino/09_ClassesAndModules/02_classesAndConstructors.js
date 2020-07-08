@@ -48,6 +48,3 @@ console.log(c === F); // true
 let o = new F();
 console.log(o.constructor === F); // true
 
-
-  
-
