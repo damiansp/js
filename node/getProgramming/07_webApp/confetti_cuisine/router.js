@@ -1,4 +1,4 @@
-const httpStatus = require('https-status-codes');
+const httpStatus = require('http-status-codes');
 const  contentTypes = require('./contentTypes'),
   utils = require('./utils');
 
