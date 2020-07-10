@@ -1,0 +1,14 @@
+{
+  "name": "express_project",
+  "version": "1.0.0",
+  "description": "Learning the Express.js Framework",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo No tests yet"
+  },
+  "author": "Damian Satterthwaite-Phillips <dsatterthwaite@cbtnuggets.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
