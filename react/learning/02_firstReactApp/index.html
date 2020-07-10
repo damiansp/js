@@ -8,10 +8,26 @@
     </script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js">
     </script>
+    <style>
+      #container {
+        padding: 50px;
+        background-color: #BFB;
+      }
+
+      #container h1 {
+        font-size: 144px;
+        font-family: sans-serif;
+        color: #808;
+      }
+    </style>
   </head>
+
+
   <body>
-    <script type="text/babel">
-      ReactDOM.render(<h1>Sherlock Holmes</h1>, document.body);
-    </script>
+    <div id="container"></div>
   </body>
+  <script type="text/babel">
+    let destination = document.querySelector("#container");
+    ReactDOM.render(<h1>HULK SMASH!!!</h1>, destination);
+  </script>
 </html>
