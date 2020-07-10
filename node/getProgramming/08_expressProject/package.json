@@ -4,7 +4,8 @@
   "description": "Learning the Express.js Framework",
   "main": "main.js",
   "scripts": {
-    "test": "echo No tests yet"
+    "test": "echo No tests yet",
+    "start": "nodemon main.js"
   },
   "author": "Damian Satterthwaite-Phillips <dsatterthwaite@cbtnuggets.com>",
   "license": "ISC",
