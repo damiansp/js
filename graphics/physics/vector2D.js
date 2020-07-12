@@ -41,6 +41,12 @@ Vector2D.prototype = {
     this.y -= vec.y;
   },
 
+  multiply: function(k) { return new Vector2D(k * this.x, k * this.y); },
+
+  addScaled: function(vec, k) {
+    return new Vector2D(this.x + k*vec.x, this.y + k*vec.y);
+  },
+  
   scaleBy: function(k) {
     this.x *= k;
     this.y *= k;
