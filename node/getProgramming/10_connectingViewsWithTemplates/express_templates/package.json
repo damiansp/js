@@ -1,0 +1,14 @@
+{
+  "name": "express_templates",
+  "version": "1.0.0",
+  "description": "Learning Express Templates",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"No tests\""
+  },
+  "author": "damiansp@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.3"
+  }
+}
