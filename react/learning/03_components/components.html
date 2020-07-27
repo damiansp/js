@@ -19,11 +19,16 @@
     <script type="text/babel">
       class HelloWorld extends React.Component {
         render() {
-          return <p>Hello, Componentized World!</p>
+          return <p>Hello, {this.props.greetTarget}!</p>
         }  
       }
-      ReactDOM.render(<div><HelloWorld /></div>,
-                      document.querySelector('#container'));
+      ReactDOM.render(
+        <div>
+          <HelloWorld greetTarget="Batman"/>
+          <HelloWorld greetTarget="Bob Dobolina"/>
+          <HelloWorld greetTarget="Santa"/>
+        </div>,
+        document.querySelector('#container'));
     </script>
   </body>
 </html>
