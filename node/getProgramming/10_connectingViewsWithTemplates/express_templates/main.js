@@ -1,8 +1,11 @@
 'use strict';
 
-const express = require('express');
 const bodyParser = require('body-parser');
+const express = require('express');
+const layouts = require('express-ejs-layouts');
+
 const homeController = require('./controllers/homeController');
+
 
 const port = 3000;
 const app = express();
@@ -12,6 +15,7 @@ app.set('port', process.env.PORT || port);
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(layouts);
 app.use((req, res, next) => {
     console.log(`request made to: ${req.url}`);
     next();
@@ -30,3 +34,6 @@ app.post('/', (req, res) => {
 app.listen(port, () => {
     console.log(`Server running at "http://localhost:${app.get('port')}"`);
 });
+
+
+/** run with, e.g., localhost:3000/name/:Bob */
