@@ -32,4 +32,10 @@ const http = require('http');
 // import own code
 const stats = require('./stats.js')
 const BitSet = require('./utils/bitset.js')
+
+let avg = stats.mean(data);
+
+const { sd } = require('./stats.js') // imports sd() function from stats
+let mySD = sd(data) // not stats.sd
  */
+
