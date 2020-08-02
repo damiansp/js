@@ -17,7 +17,8 @@ app.set('port', process.env.PORT || port);
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(layouts);
-app.use(errorController.logErrors);
+app.use(errorController.respondNoResourceFound);
+app.use(errorController.respondInternalError);
 app.use((req, res, next) => {
     console.log(`request made to: ${req.url}`);
     next();
