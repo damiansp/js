@@ -22,3 +22,27 @@ import './analytics.js'; // case when module has no exports
 
 
 // 3. Imports and Exports with Renaming
+import { render as renderImage } from './imageutils.js';
+import { render as renerUI } from './ui.js';
+
+// similarly
+export { layout as calculateLayout, render as renderLayout };
+
+
+
+// 4. Re-Exports
+import { mean } from './stats/mean.js';
+import { sd } from './stats/sd.js';
+export { mean, sd };
+
+// or, more simply
+export { mean } from './stats/mean.js';
+export { sd } from './stats/sd.js';
+
+export * from './stats/mean.js';
+
+export { mean, mean as average } from './stats/mean.js';
+
+
+
+// 5. JavaScript Modules on the Web
