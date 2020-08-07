@@ -45,4 +45,19 @@ export { mean, mean as average } from './stats/mean.js';
 
 
 
-// 5. JavaScript Modules on the Web
+// 6. Dynamic imports with import()
+import * as stats from './stats.js';
+import('./stats.js').then(stats => { let avg = stats.mean(data); });
+
+async analyzeData(data) {
+  let stats = await import('./stats.js');
+  return {average: stats.mean(data), sd: stats.sd(data)};
+}
+
+
+
+// 7. import.meta.url
+function localStringsURL(locale) {
+  return new URL(`110n/${locale}.json`, import.meta.url);
+}
+  
