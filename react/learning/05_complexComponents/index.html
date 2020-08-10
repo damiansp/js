@@ -22,12 +22,20 @@
     <div id="container"></div>
     <script type="text/babel">
       class Square extends React.Component {
-        render() { return <br /> };
+        render() {
+          let squareStyle = {height: 150,
+                             backgroundColor: "#6366FF"};
+          return (<div style={squareStyle}></div>);
+        };
       }
 
       class Label extends React.Component {
         render() {
-          return <br />
+          let labelStyle = {fontFamily: "sans-serif",
+                            fontWeight: "bold",
+                            padding: 13,
+                            margin: 0};
+          return (<p style={labelStyle}>#6366FF</p>);
         };
       }
 
@@ -38,7 +46,7 @@
                            padding: 0,
                            backgroundColor: "#fcebda",
                            boxShadow: "0 0 5px #666"};
-          return <div style={cardStyle}></div>;
+          return <div style={cardStyle}><Square /><Label /></div>;
         };
       }
       
