@@ -24,7 +24,7 @@
       class Square extends React.Component {
         render() {
           let squareStyle = {height: 150,
-                             backgroundColor: "#6366FF"};
+                             backgroundColor: this.props.color};
           return (<div style={squareStyle}></div>);
         };
       }
@@ -35,7 +35,7 @@
                             fontWeight: "bold",
                             padding: 13,
                             margin: 0};
-          return (<p style={labelStyle}>#6366FF</p>);
+          return (<p style={labelStyle}>{this.props.color}</p>);
         };
       }
 
@@ -46,12 +46,20 @@
                            padding: 0,
                            backgroundColor: "#fcebda",
                            boxShadow: "0 0 5px #666"};
-          return <div style={cardStyle}><Square /><Label /></div>;
+        return (
+          <div style={cardStyle}>
+            <Square color={this.props.color}/>
+            <Label color={this.props.color}/>
+          </div>);
         };
       }
       
-      ReactDOM.render(<div><Card /></div>,
-                      document.querySelector("#container"));
+      ReactDOM.render(
+        <div>
+          <Card color="#6366ff" />
+          <Card color="#37a7ff" />
+        </div>,
+        document.querySelector("#container"));
     </script>
   </body>
 </html>
