@@ -23,3 +23,27 @@ console.log(s.size); //1
 s.clear();
 console.log(s.size); // 0
 
+let primes = new Set([2, 3, 5, 7]);
+console.log(primes.has(2)); // true
+console.log(primes.has(4)); // false
+console.log(primes.has('5')); // false
+
+let sum = 0;
+for (let p of primes) sum += p;
+console.log(sum); // 17
+console.log([...primes]);
+console.log(Math.max(...primes)); // 7
+
+let product = 1;
+primes.forEach(n => { product *= n; });
+console.log(product); // 210
+
+
+
+// 2. The Map Class
+let m = new Map();
+let n = new Map([["one", 1], ["two", 2]]);
+let copy = new Map(n);
+let o = {x: 1, y: 2};
+let p = new Map(Object.entries(o));
+console.log(p);
