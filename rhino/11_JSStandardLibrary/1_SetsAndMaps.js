@@ -79,5 +79,7 @@ console.log([...n.keys()]);
 console.log([...n.values()]);
 console.log([...n.entries()]);
 
-             
+n.forEach((val, key) => { // <- why???
+    console.log(key + ' -> ' + val);
+});
 
