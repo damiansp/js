@@ -42,8 +42,42 @@ console.log(product); // 210
 
 // 2. The Map Class
 let m = new Map();
-let n = new Map([["one", 1], ["two", 2]]);
+let n = new Map([['one', 1], ['two', 2]]);
 let copy = new Map(n);
 let o = {x: 1, y: 2};
 let p = new Map(Object.entries(o));
 console.log(p);
+
+console.log(m.size); // 0
+m.set('one', 1);
+m.set('two', 2);
+console.log(m.size); // 2
+console.log(m.get('two')); // 2
+console.log(m.get('three')); // undefined
+m.set('one', true);
+console.log(m.size);         // 2
+console.log(m.has('one'));   // true
+m.has(true);                 // false
+m.delete('one');
+console.log(m.size);         // 1
+console.log(m.delete('three')); // false
+m.clear();
+
+let q = new Map().set('one', 1).set('two', 2).set('three', 3);
+let r = new Map();
+r.set({}, 1);
+r.set({}, 2);
+console.log(r.size); // 2 (two diff empty objects)
+console.log(r.get({})); // undefined
+r.set(r, undefined);
+console.log(r.has(r));  // true
+console.log(r.get(r));  // undefined
+
+console.log([...n]); // [['one', 1], ['two', 2]]
+for (let [key, val] of n)  console.log(key + ' -> ' + val);
+console.log([...n.keys()]);
+console.log([...n.values()]);
+console.log([...n.entries()]);
+
+             
+
