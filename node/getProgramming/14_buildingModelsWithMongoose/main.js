@@ -6,12 +6,9 @@ const mongoose = require('mongoose');
 
 //const errorController = require('./controllers/errorController');
 //const homeController = require('./controllers/homeController');
+const Subscriber = require('./models/subscriber');
 
 const PORT = 3000;
-const SUBSCRIBER_SCHEMA = mongoose.Schema({name: String,
-                                           email: String,
-                                           zipCode: String});
-const Subscriber = mongoose.model('Subscriber', SUBSCRIBER_SCHEMA);
 const app = express();
 
 mongoose.connect('mongodb://localhost:27017/recipe', {useNewUrlParser: true});
