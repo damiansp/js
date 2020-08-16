@@ -33,6 +33,11 @@ Subscriber.create(
     if (error) console.log(error);
     console.log(savedDocument);
   });
+
+let myQuery = Subscriber.findOne({name: 'Bob Dobolina'})
+  .where('email', /bobdob/);
+myQuery.exec((error, data) => { if (data) console.log('Name: ' + data.name); });
+                                                              
 /*
 
 app.set('port', process.env.PORT || PORT);
