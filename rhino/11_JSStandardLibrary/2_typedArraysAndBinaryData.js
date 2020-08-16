@@ -41,3 +41,31 @@ console.log(ints.fill(3).map(x => x * x).join('')); // 9999
 
 
 // 4. Typed Array Methods and Properties
+let bites = new Uint8Array(1024);
+let pattern = new Uint8Array([0, 1, 2, 3]);
+bites.set(pattern);
+bites.set(pattern, 4);
+bites.set([0, 1, 2, 3], 8);
+console.log(bites.slice(0, 12)); // [0, 1, 2, 3, 0, 1, 2, 3, 0, 1, 2, 3]
+
+let someInts = new Int16Array([0, 1, 2, 3, 4, 5, 6, 7, 8 , 9]);
+let last3 = someInts.subarray(someInts.length - 3, someInts.length);
+console.log(last3[0]); // 7
+someInts[9] = -1;
+console.log(last3[2]); // -1
+
+console.log(last3.buffer === someInts.buffer); // true
+console.log(last3.byteOffset);                 // 14
+console.log(last3.byteLength);                 // 6
+console.log(last3.buffer.byteLength);          // 20
+
+let boits = new Uint8Array(8);
+boits[0] = 1;
+console.log(boits.buffer[0]); // undefined
+boits.buffer[1] = 225;        // Try incorrectly to set byte in buffer
+console.log(bytes.buffer[1]); // undefined
+console.log(bytes[1]);        // 0 (byte not set)
+
+
+
+// 5. DataView and Endianness
