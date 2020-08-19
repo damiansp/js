@@ -69,3 +69,13 @@ console.log(bytes[1]);        // 0 (byte not set)
 
 
 // 5. DataView and Endianness
+let littleEndian = new Int8Array(new Int32Array([1]).buffer)[0] === 1;
+console.log(littleEndian); // true -> machine uses litte endian architecture
+
+let view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+let int = view.getInt32(0); // read big endian signed int from byte 0
+int = view.getInt32(4, false); // next byte also big endian
+int = view.getUint32(8, true); // Next is little endian, unsigned
+view.setUint32(8, int, false); // Write it back in big-endian format
+
+
