@@ -49,11 +49,17 @@
       function randHex() {
         const digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A",
                         "B", "C", "D", "E", "F"];
-        let idx = Math.floor(Math.random() * 17);
+        let idx = Math.floor(Math.random() * 16);
         return digits[idx];
       }
 
-      ReactDOM.render(<div>{showCircle()}</div>,
+      let renderData = [];                      
+      for (let i = 0; i < 8; i++) {
+        let color = randColor();                                        
+        renderData.push(<Circle key={i + color} bgColor={color} />);
+      }
+                          
+      ReactDOM.render(<div>{renderData}</div>,
                       document.querySelector("#container"));
     </script>
   </body>  
