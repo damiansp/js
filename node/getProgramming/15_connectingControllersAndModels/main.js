@@ -30,7 +30,15 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(homeController.logRequestPaths);
 
+app.post('/', (req, res) => {
+    console.log(req.body);
+    console.log(req.query);
+    res.send('POST Successful!');
+});
+app.get('/contact', subscribersController.getSubscriptionPage);
+app.get('/items/:vegetable', homeController.sendReqParam);
 app.get('/name', homeController.respondWithName);
+app.post('/subscribe', subscribersController.saveSubscriber);
 app.get(
   '/subscribers',
   subscribersController.getAllSubscribers,
@@ -38,13 +46,6 @@ app.get(
     console.log(req.data);
     res.send(req.data);
   });
-app.get('/items/:vegetable', homeController.sendReqParam);
-
-app.post('/', (req, res) => {
-    console.log(req.body);
-    console.log(req.query);
-    res.send('POST Successful!');
-});
 
 app.use(errorController.logErrors);
 app.use(errorController.respondNoResourceFound);
