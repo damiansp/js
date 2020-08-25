@@ -39,7 +39,10 @@
         }
 
         increase(e) {
-          this.setState({count: this.state.count + 1});
+          let currentCount = this.state.count;
+          if (e.shiftKey) currentCount += 10;
+          else currentCount++;
+          this.setState({count: currentCount});
         }
 
         render() {
