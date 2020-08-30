@@ -5,7 +5,8 @@ const express = require('express'),
   mongoose = require('mongoose');
 
 const homeController = require('./controllers/homeController'),
-  errorController = require('./controllers/errorController');
+  errorController = require('./controllers/errorController'),
+  subscribersController = require('./controllers/subscribersController');
 
 const PORT = 3000;
 const  app = express();
@@ -24,8 +25,10 @@ app.use(express.static('public'));
 
 app.get('/', (req, res) => { res.render('index'); });
 app.get('/courses', homeController.showCourses);
-app.get('/contact', homeController.showSignUp);
+app.get('/contact', subscribersController.getSubscriptionPage);
+app.get('/subscribers', subscribersController.getAllSubscribers);
 app.post('/contact', homeController.postedSignUpForm);
+app.post('/subscribe', subscribersController.saveSubscriber);
 
 app.use(errorController.pageNotFoundError);
 app.use(errorController.internalServerError);
