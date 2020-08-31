@@ -7,3 +7,10 @@ tr {
 }
 
 td { padding: 10px; }
+
+#box {
+    width: 200px;
+    height: 200px;
+    background: #2c948f;
+    border: solid 1px black;
+}
