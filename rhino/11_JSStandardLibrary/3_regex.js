@@ -70,3 +70,7 @@ console.log('Testing<br />1, 2, 3'.split(htmlTag));
 
 
 // 3. The RegExp Class
+let zipcode = new RegExp('\\d{5}', 'g');
+let exactMatch = /JavaScript/;
+let caseInsensitive = new RegExp(exactMatch, 'i');
+
