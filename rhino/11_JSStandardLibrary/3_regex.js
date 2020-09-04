@@ -33,3 +33,40 @@ if (match !== null) {
   console.log(
     `URL: ${fullURL}\nprotocol: ${protocol}\nhost: ${host}\npath: ${path}`)
 }
+
+
+url = /(?<protocol>\w+):\/\/(?<host>[\w.]+)\/(?<path>\S*)/;
+match = txt.match(url);
+console.log(match[0]);
+console.log(match.input); // txt
+console.log(match.index);  // 17
+console.log(match.groups.protocol); // http
+console.log(match.groups.host);     // www.example.com
+console.log(match.groups.path);     // ~david
+
+
+let vowel = /[aeiou]/y; // "sticky" vowel match
+console.log('test'.match(vowel)); // null (does not begin w vowel)
+vowel.lastIndex = 1;              // specify difft match position
+console.log('test'.match(vowel)[0]); // 'e'
+console.log(vowel.lastIndex);        // 2 (updated)
+console.log('test'.match(vowel));    // null - no more matches
+console.log(vowel.lastIndex);        // reset after fail
+
+const words = /\b\p{Alphabetic}+\b/gu; // \p maybe not supported in Firefox yet
+const tx = 'This is a naïve test of the matchAll() method.';
+for (let word of tx.matchAll(words)) {
+  console.log(`Found '${word[0]}' at index ${word.index}.`);
+}
+
+
+
+console.log('123,456,789'.split(','));
+console.log('1, 2, 3,\n4, 5'.split(/\s*,\s*/));
+
+const htmlTag = /<([^>]+)>/;
+console.log('Testing<br />1, 2, 3'.split(htmlTag));
+
+
+
+// 3. The RegExp Class
