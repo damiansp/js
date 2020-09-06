@@ -1,12 +1,14 @@
-#accordion {
+div {
     width: 500px;
+    height: 500px;
+    background: #882222;
+    padding: 20px;
+    border-radius: 25px;}
+
+h5 {
     border: 1px solid black;
-}
-
-#accordion h2 {
+    background: #DDEEEE;
+    width: 300px;
+    font-size: 20px;
     padding: 5px;
-    margin: 0;
-    background: #CCD;
-}
-
-#accordion p { padding: 0 5px; }
+    top: 20px;}
