@@ -74,3 +74,15 @@ let zipcode = new RegExp('\\d{5}', 'g');
 let exactMatch = /JavaScript/;
 let caseInsensitive = new RegExp(exactMatch, 'i');
 
+
+let pattern3 = /Java/g;
+let t = 'JavaScript > Java';
+let mtch;
+while ((mtch = pattern3.exec(t)) !== null) {
+  console.log(`Matched ${mtch[0]} at ${mtch.index}`);
+  console.log(`  Next search begins at ${pattern3.lastIndex}`);
+}
+
+
+
+// 4. Dates and Times
