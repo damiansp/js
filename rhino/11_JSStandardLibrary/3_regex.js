@@ -82,7 +82,3 @@ while ((mtch = pattern3.exec(t)) !== null) {
   console.log(`Matched ${mtch[0]} at ${mtch.index}`);
   console.log(`  Next search begins at ${pattern3.lastIndex}`);
 }
-
-
-
-// 4. Dates and Times
