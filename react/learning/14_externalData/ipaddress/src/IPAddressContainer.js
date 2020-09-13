@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import IPAddress from './IPAddress';
 
 
 let xhr; // xmlHttpRequest
@@ -21,10 +22,10 @@ class IPAddressContainer extends Component {
     if (xhr.readyState === 4 && xhr.status === 200) {
       let response = JSON.parse(xhr.responseText);
       this.setState({ipAddress: response.ip});
-    } else { this.setState({ipAddress: '123.245.167.189'}) };
+    } else { this.setState({ipAddress: '123.45.67.89'}) };
   }
   
-  render () { return <p>{this.state.ipAddress}</p>; }
+  render () { return <IPAddress ip={this.state.ipAddress} />; }
 }
 
 
