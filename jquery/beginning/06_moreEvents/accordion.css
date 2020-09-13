@@ -1,0 +1,12 @@
+#accordion {
+    width: 500px;
+    border: 1px solid black;
+}
+
+#accordion h2 {
+    padding: 5px;
+    margin: 0;
+    background: #CCD;
+}
+
+#accordion p { padding: 0 5px; }
