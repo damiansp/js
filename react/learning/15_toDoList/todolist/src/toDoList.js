@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ToDoItems from './ToDoItems';
+import ToDoItems from './toDoItems';
 
 
 class ToDoList extends Component {
