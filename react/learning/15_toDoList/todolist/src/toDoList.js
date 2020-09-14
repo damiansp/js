@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ToDoItems from './ToDoItems';
 
 
 class ToDoList extends Component {
@@ -8,17 +9,29 @@ class ToDoList extends Component {
     this.addItem = this.addItem.bind(this);
   }
 
-  addItem(e) {}
+  addItem(e) {
+    let itemArray = this.state.items;
+    if (this._inputElement.value !== '') {
+      itemArray.unshift({text: this._inputElement.value, key: Date.now()});
+      this.setState({items: itemArray});
+      this._inputElement.value = '';
+    }
+    console.log(itemArray);
+    e.preventDefault(); // keep page from reloading & clearing fields on submit
+  }
   
   render() {
     return (
       <div className="toDoListMain">
         <div className="header">
           <form onSubmit={this.addItem}>
-            <input placeholder="enter task"></input>
+            <input ref={(a) => this._inputElement = a}
+                   placeholder="enter task">
+            </input>
             <button type="submit">Add</button>
           </form>
         </div>
+        <ToDoItems entries={this.state.items} />
       </div>);
   }
 }
