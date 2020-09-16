@@ -7,7 +7,15 @@ class ToDoItems extends Component {
     this.createTasks = this.createTasks.bind(this);
   }
 
-  createTasks(task) { return <li key={task.key}>{task.text}</li>; }
+  delete(key) { this.props.delete(key); }
+
+  createTasks(task) {
+    return (
+      <li onClick={() => this.delete(task.key)}
+          key={task.key}>
+        {task.text}
+      </li>);
+  }
 
   render() {
     let toDoEntries = this.props.entries;
