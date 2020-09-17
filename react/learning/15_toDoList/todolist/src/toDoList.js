@@ -9,6 +9,7 @@ class ToDoList extends Component {
     super(props);
     this.state = {items: []};
     this.addItem = this.addItem.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   addItem(e) {
@@ -20,6 +21,13 @@ class ToDoList extends Component {
     }
     console.log(itemArray);
     e.preventDefault(); // keep page from reloading & clearing fields on submit
+  }
+
+  deleteItem(key) {
+    let filteredItems = this.state.items.filter(function(item) {
+        return (item.key !== key);
+    });
+    this.setState({items: filteredItems});
   }
   
   render() {
@@ -33,7 +41,7 @@ class ToDoList extends Component {
             <button type="submit">Add</button>
           </form>
         </div>
-        <ToDoItems entries={this.state.items} />
+      <ToDoItems entries={this.state.items} delete={this.deleteItem} />
       </div>);
   }
 }
