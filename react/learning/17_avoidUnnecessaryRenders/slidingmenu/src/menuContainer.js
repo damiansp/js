@@ -21,6 +21,7 @@ class MenuContainer extends Component {
   toggleMenu() { this.setState({visible: !this.state.visible}); }
   
   render() {
+    console.log('Rendering: MenuContainer');
     return (
       <div>
         <MenuButton handleMouseDown={this.handleMouseDown} />
