@@ -6,3 +6,13 @@ const definePlugin = function() {
 };
 
 definePlugin();
+
+
+// Alternately, as immediately-invoked function:
+(function($) {
+  $.fn.logID = function() {
+    return this.each(function() { console.log(this.id); });
+  };
+})(jQuery);
+
+
