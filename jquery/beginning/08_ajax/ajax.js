@@ -19,7 +19,11 @@ $(function() {
     });
 
 
-    // Get data from TVMaze API
+    // Get data from TVMaze API // Cross-Origin Request (blocked)
     const tvmReq = $.ajax({url: 'http://api.tvmaze.com/show/396/episodes'});
     tvmReq.done(function(data) { console.log(data); });
+
+    const req = $.ajax({url: 'http:/api.remote-site.com/show/626625',
+                        dataType: 'jsonp'}); /* not found */
+    req.done(function(data) { console.log('req: ' + data); });
 });
