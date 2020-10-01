@@ -1,18 +1,25 @@
 import React, { Component } from 'react';
+import { HashRouter, NavLink, Route } from 'react-router-dom';
+
+import Contact from './contact';
+import Home from './home';
+import Stuff from './stuff';
 
 
 class Main extends Component {
   render() {
     return (
-      <div>
-        <h1>Simple SPA</h1>
-        <ul className="header">
-          <li><a href="/">Home</a></li>
-          <li><a href="/stuff">Stuff</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-        <div className="content"></div>
-      </div>);
+      <HashRouter>
+        <div>
+          <h1>Simple SPA</h1>
+          <ul className="header">
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/stuff">Stuff</NavLink></li>
+            <li><NavLink to="/contact">Contact</NavLink></li>
+          </ul>
+          <div className="content"></div>
+        </div>
+      </HashRouter>);
   }
 }
 
