@@ -17,7 +17,11 @@ class Main extends Component {
             <li><NavLink to="/stuff">Stuff</NavLink></li>
             <li><NavLink to="/contact">Contact</NavLink></li>
           </ul>
-          <div className="content"></div>
+          <div className="content">
+      　　　<Route exact path="/" component={Home} />
+            <Route path="/stuff" component={Stuff} />
+            <Route path="/contact" component={Contact} />
+      　　</div>
         </div>
       </HashRouter>);
   }
