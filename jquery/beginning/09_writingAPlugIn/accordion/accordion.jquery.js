@@ -1,6 +1,7 @@
 (function($) {
     $.fn.accordion = function(opts) {
-      let defaults = {headings: 'h2', content: 'p', callback: function() {}};
+      let defaults = {
+        headings: 'h2', content: 'p', duration: 600, callback: function() {}};
       let options = $.extend({}, defaults, opts);
       
       return this.each(function() {
@@ -21,7 +22,7 @@
           });
 
           $this.on('showParagraph', options.content, function() {
-              animateAccordion(this, 600);
+              animateAccordion(this, options.duration, options.callback);
           });
       });
     };
