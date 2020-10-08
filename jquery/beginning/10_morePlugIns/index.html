@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TV Maze Plugin</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>TV Maze - TV Show Search</h1>
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control" id="showInput"
+                 placeholder="Search TV Show" required />
+          <button type="submit" class="btn btn-primary" id="submitButton">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div>
+      <table class="table">
+        <thead id="tableHead">
+          <tr>
+            <td>Name</td>
+            <td>Network</td>
+            <td>Type</td>
+            <td>Image</td>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <td>Airdate</td>
+            <td>Episode Name</td>
+            <td>Episode Number</td>
+            <td>Season</td>
+            <td>Run Time</td>
+            <td>Summary</td>
+          </tr>
+        </thead>
+        <tbody id="episodeInfo"></tbody>
+      </table>
+    </div>
+
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
+    <script src="tvmaze.jquery.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
