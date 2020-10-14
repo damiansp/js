@@ -1,0 +1,35 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    background-color: #E7C938;
+}
+
+
+.container {
+    background-color: #FFF;
+    margin: 100px;
+    padding: 10px;
+    border-radius: 3px;
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.buttons {
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+    transition: all .15s ease-in;
+}
+
+.buttons:hover:nth-child(1) { background-color: #45B69F; }
+
+.buttons:hover:nth-child(3) { background-color: #0DFA1C; }
+
+
