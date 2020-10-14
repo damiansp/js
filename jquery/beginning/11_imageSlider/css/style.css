@@ -1,0 +1,50 @@
+body { padding: 50px; }
+
+a:link {
+    color: blue;
+    text-decoration: underline;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+a:visited {
+    color: blue;
+    text-decoration: underline;
+}
+
+
+.back { float: left; }
+
+.button {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    display: block;
+    padding: 6px;
+    border: 1px solid #ccc;
+    margin: 10px 0 0 0;
+}
+
+.forward { float: right; }
+
+.slider {
+    width: 300px;
+    overflow: hidden;
+    height: 400px;
+}
+
+.slider li {
+    float: left;
+    width: 300px;
+    height: 300px;
+}
+
+.slider ul {
+    list-style: none;
+    width: 3000px;
+    height: 300px;
+    margin: 0;
+    padding: 0;
+}
+
