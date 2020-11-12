@@ -17,9 +17,9 @@ class Range {
   // Make a Range iterable by returning an iterator object. Note that the name
   // of this method is a special symbol, not a string.
   [Symbol.iterator]() {
-    // Each iterator instance must iterate the range independnently of others. So
-    // we need a state var to track our location in the iteration.  We start at
-    // the first int >= from
+    // Each iterator instance must iterate the range independnently of others.
+    // So we need a state var to track our location in the iteration.  We start
+    // at the first int >= from
     let next = Math.ceil(this.from);
     let last = this.to;
     return {
