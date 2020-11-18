@@ -12,7 +12,7 @@ console.log(primes.next().value); // 5
 console.log(primes.next());       // {value: 7, done: true}
 console.log(primes.next());       // {value: undefined, done: true}
 
-onsole.log(primes[Symbol.iterator]()); // Object [Generator] {}
+console.log(primes[Symbol.iterator]()); // Object [Generator] {}
 console.log([...oneDigitPrimes()]);     // 2 3 5 7
 let sum = 0;
 for (let prime of oneDigitPrimes()) sum += prime;
@@ -46,3 +46,62 @@ function* fiboSeq() {
   }
 }
 
+function fibonacci(n) {
+  for (let f of fiboSeq()) {
+    if (n-- <= 0) return f;
+  }
+}
+
+console.log(fibonacci(20)); // 10946
+
+// Yield the first n elements of the specified iterable
+function* take(n, iterable) {
+  let it = iterable[Symbol.iterator]();
+  while (n-- > 0) {
+    let next = it.next();
+    if (next.done) return;
+    else yield next.value;
+  }
+}
+
+console.log([...take(5, fiboSeq())]); // 1 1 2 3 5
+
+function* zip(...iterables) {
+  let iterators = iterables.map(i => i[Symbol.iterator]());
+  let index = 0;
+  while (iterators.length > 0) {
+    if (index >= iterators.length) index = 0;
+    let item = iterators[index].next();
+    if (item.done) iterators.splice(index, 1);
+    else {
+      yield item.value;
+      index++;
+    }
+  }
+}
+
+console.log([...zip(oneDigitPrimes(), 'ab', [0])]); // 2 a 0 3 b 5 7
+
+
+
+// 2. `yield*` and Recursive Generators
+function* sequence(...iterables) {
+  for (let iterable of iterables) {
+    for (let item of iterable) yield item;
+  }
+}
+
+console.log([...sequence('abc', oneDigitPrimes())]); // a b c 2 3 5 7
+
+
+function* seq2(...iterables) {
+  for (let iterable of iterables) yield* iterable
+}
+
+console.log([...seq2('abc', oneDigitPrimes())]); // a b c 2 3 5 7
+
+
+function* errSeq(...iterables) {
+  // error (forEach nor a generator; cannot use *yield)
+  iterables.forEach(iterable => yield* iterable); 
+}
