@@ -2,14 +2,9 @@ const canvas = document.getElementById('game');
 const ctx = canvas.getContext('2d');
 const H = canvas.height;
 const W = canvas.width;
-const MINOR_SPACE = 10;
 
 
-function drawGrid(ctx, minor, major, stroke, fill) {
-  minor = minor || MINOR_SPACE;
-  major  = major || 5 * minor;
-  stroke = stroke || '#0F0';
-  fill = fill || '#090';
+function drawGrid(ctx, minor=10, major=50, stroke='#0F0', fill='#090') {
   ctx.save();
   ctx.strokeStyle = stroke;
   ctx.fillStyle = fill;
@@ -33,8 +28,31 @@ function drawGrid(ctx, minor, major, stroke, fill) {
 }
 
 
-//drawGrid(ctx);
-drawGrid(ctx, 10, 50, 'yellow', 'red');
-//drawGrid(ctx, 5, 30, 'white', 'red');
+function drawLines(ctx, zag, close, stroke='#FFF', fill='#0F0') {
+  ctx.save();
+  ctx.strokeStyle = stroke;
+  ctx.fillStyle = fill;
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  let points = [[50, 50], [150, 250], [250, 150]];
+  ctx.moveTo(...points[0]);
+  ctx.lineTo(...points[1])
+  ctx.lineTo(...points[2]);
+  if (zag) {
+    points.push([350, 350]);
+    ctx.lineTo(...points[3]);
+  }
+  if (close) ctx.closePath();
+  ctx.stroke();
+  for (let point of points) {
+    let [x, y] = point
+      ctx.fillText(`(${x}, ${y})`, x - 20, y - 10);
+  }
+  if (fill) ctx.fill();
+  ctx.restore();
+}
 
+
+drawGrid(ctx, 10, 50, 'yellow', 'red');
+drawLines(ctx, zag=true, close=true);//, stroke='#FED', fill=false);
 
