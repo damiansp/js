@@ -52,6 +52,7 @@ function addShip(ctx, x, y, r, f, options={}) {
   ctx = initDrawSettings(ctx, options);
   let angle = (options.angle || Math.PI / 2) / 2;
   if (f == 'ds') drawShip(ctx, x, y, r, angle);
+  else drawShip2(ctx, r, angle);
   ctx.restore();
   return ctx;
 }
@@ -76,7 +77,18 @@ function rotateCtx(ctx) {
 }
 
 
-function spiral(ctx) {}
+function spiral(ctx) {
+  const t = W / 20,
+    spiralR = Math.PI / 500,
+    shipR = 30;
+  ctx.translate(0, t);
+  for (let i = 0; i <= 50; i++) {
+    ctx.rotate(i * spiralR);
+    addShip(
+      ctx, 100, 100, shipR, 'ds2', options={guide: true, fill: '#FF00FF88'});
+    ctx.translate(t, 0);
+  }
+}
 
 
 function main(ctx) {
@@ -88,6 +100,7 @@ function main(ctx) {
   addShip(ctx,  75, 325,  50, 'ds', {angle: 0.3 * Math.PI});
   addShip(ctx, 325,  75,  50, 'ds', {lineWidth: 8, fill: 'blue'});
   rotateCtx(ctx);
+  spiral(ctx);
 }
 
 main(ctx);
