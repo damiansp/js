@@ -35,11 +35,14 @@ function drawShip(ctx, x, y, r, angle) {
 }
 
 
-function drawShip2(ctx, r, angle) {
+function drawShip2(ctx, r, angle, curve) {
   ctx.beginPath();
   ctx.moveTo(r, 0);
   ctx.lineTo(r * Math.cos(Math.PI - angle), r * Math.sin(Math.PI - angle));
-  ctx.lineTo(r * Math.cos(Math.PI + angle), r * Math.sin(Math.PI + angle));
+  ctx.quadraticCurveTo(r*curve -r,
+                       0,
+                       r * Math.cos(Math.PI + angle),
+                       r * Math.sin(Math.PI + angle));
   ctx.closePath();
   ctx.fill();
   ctx.stroke();
@@ -51,8 +54,9 @@ function addShip(ctx, x, y, r, f, options={}) {
   if (options.guide) showGuide(ctx, x, y, r);
   ctx = initDrawSettings(ctx, options);
   let angle = (options.angle || Math.PI / 2) / 2;
+  let curve = (options.curve || 0.5);
   if (f == 'ds') drawShip(ctx, x, y, r, angle);
-  else drawShip2(ctx, r, angle);
+  else drawShip2(ctx, r, angle, curve);
   ctx.restore();
   return ctx;
 }
