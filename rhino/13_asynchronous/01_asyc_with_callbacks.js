@@ -1,3 +1,7 @@
+const fs = require('fs');
+const https = require('https');
+
+
 // 1. Timers
 let count = 0;
 let updateCount = setInterval(reportStatus, 5000);
@@ -54,3 +58,26 @@ function getCurrentVersionNumber(versionCallback) {
 
 
 // 4. Callbacks and Events in Node
+let options = {};
+
+fs.readFile('config.json', 'utf-8', (err, text) => {
+    if (err) console.warn('Could not read config file:', err);
+    else Object.assign(options, JSON.parse(text));
+    //startProgram(options);
+});
+
+
+function getText(url, callback) {
+  request = https.get(url);
+  request.on('response', response => {
+      let httpStatus = response.statusCode;
+      let body = '';
+      response.setEncoding('urf-8');
+      response.on('data', chunk => { body += chunk; });
+      response.on('end', () => {
+          if (httpStatus === 200) callback(null, body);
+          else callback(httpStatus, null);
+      });
+  });
+  request.on('error', (err) => { callback(err, null); });
+}
