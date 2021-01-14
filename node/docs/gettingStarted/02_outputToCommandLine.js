@@ -1,3 +1,7 @@
+const chalk = require('chalk');
+const ProgressBar = require('progress');
+
+
 let x = 'x';
 let y = 'y';
 console.log(x, y);
@@ -37,4 +41,13 @@ const measureDoSomething = () => {
 measureDoSomething();
 
   
+// Color output
+console.log(chalk.yellow('Like a submarine'));
 
+
+// Progress bar
+const bar = new ProgressBar(':bar', {total: 10});
+const timer = setInterval(() => {
+    bar.tick();
+    if (bar.complete) clearInterval(timer);
+}, 100);
