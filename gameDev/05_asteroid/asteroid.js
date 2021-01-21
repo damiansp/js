@@ -13,7 +13,7 @@ function setOptions(ctx, options) {
 }
 
 
-function drawGuide(ctx, r) {
+function drawGuideBasic(ctx, r) {
   ctx.lineWidth = 0.5;
   ctx.beginPath();
   ctx.arc(0, 0, r, 0, 2 * Math.PI);
@@ -22,7 +22,22 @@ function drawGuide(ctx, r) {
 }
 
 
-function drawAsteroid(ctx, r, segments, options) {
+function drawGuide(ctx, r, options) {
+  ctx.lineWidth = 0.5;
+  ctx.beginPath();
+  ctx.arc(0, 0, r, 0, 2 * Math.PI);
+  ctx.stroke();
+  ctx.lineWidth = 0.2;
+  ctx.beginPath();
+  ctx.arc(0, 0, r + r*options.noise, 0, 2 * Math.PI);
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.arc(0, 0, r - r*options.noise, 0, 2 * Math.PI);
+  ctx.stroke();
+}
+
+
+function drawAsteroidBasic(ctx, r, segments, options) {
   ctx, options = setOptions(ctx, options);
   ctx.save();
   ctx.beginPath();
@@ -34,13 +49,29 @@ function drawAsteroid(ctx, r, segments, options) {
   ctx.fill();
   ctx.stroke();
   if (options.guide) {
-    ctx = drawGuide(ctx, r);
+    ctx = drawGuide(ctx, r, options);
   }
   ctx.restore()
 }
 
 
-function main(ctx) {
+function drawAsteroid(ctx, r, shape, options) {
+  ctx, options = setOptions(ctx, options);
+  ctx.save();
+  ctx.beginPath();
+  for (let i = 0; i < shape.length; i++) {
+    ctx.rotate(2 * Math.PI / shape.length);
+    ctx.lineTo(r + r*options.noise*shape[i], 0);
+  }
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  if (options.guide) drawGuide(ctx, r, options);
+  ctx.restore();
+}
+
+
+function mainBasic(ctx) {
   let segments = 1;
   for (let x=0.25; x < 1; x += 0.5) {
     for (let y=0.25; y < 1; y += 0.5) {
@@ -52,5 +83,23 @@ function main(ctx) {
     }
   }
 }
+
+
+function main(ctx) {
+  let segments = 15,
+    noise = 0,
+    shape = [];
+  for (let i = 0; i < segments; i++) shape.push(2 * (Math.random() - 0.5));
+  for (let y = 0.1; y < 1; y += 0.2) {
+    for (let x = 0.1; x < 1; x += 0.2) {
+      ctx.save();
+      ctx.translate(W * x, H * y);
+      drawAsteroid(ctx, W / 16, shape, {noise: noise, guide: true});
+      ctx.restore();
+      noise += 0.025;
+    }
+  }
+}
+
 
 main(ctx);
