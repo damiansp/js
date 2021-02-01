@@ -9,7 +9,9 @@ const R = 40; // radius
 
 let x = 0,
   y = H / 2,
-  dir = 1;
+  dir = 1,
+  ySpeed = 0,
+  gravity = 0.001;
 
 
 function frame() {
@@ -27,6 +29,8 @@ function update() {
     x--;
     if (x <= R) dir = 1;
   }
+  y += ySpeed;
+  ySpeed += gravity;
 }
 
 
