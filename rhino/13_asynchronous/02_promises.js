@@ -39,3 +39,19 @@ fetch('api/user/profile').then(repsonse => {
 fetch('/api/user/profile')
   .then(response => { return repsonse.json(); })
   .then(profile => { displayUserProfile(profile) });
+
+
+
+// 3. Resolving Promises
+function c1(response) {      // callback 1
+  let p4 = response.json();  // promise 4
+  return p4;
+}
+
+
+function c2(profile) { displayUserProfile(profile); }
+
+
+let p1 = fetch('/api/user/profile');
+let p2 = p1.then(c1);
+let p3 = p2.then(c2);
