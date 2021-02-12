@@ -31,6 +31,7 @@ function update() {
   }
   y += ySpeed;
   ySpeed += gravity;
+  if (y > H + R) y = 0 - R;
 }
 
 
