@@ -55,3 +55,25 @@ function c2(profile) { displayUserProfile(profile); }
 let p1 = fetch('/api/user/profile');
 let p2 = p1.then(c1);
 let p3 = p2.then(c2);
+
+
+// 4. More on Promises and Errors
+fetch('api/user/profile')
+  .then(response -> {
+      if (!response.ok) return null;
+
+      let type = response.headers.get('content-type');
+      if (type !== 'application/json') {
+        throw new TypeError(`Expected JSON, got ${type}`);
+      }
+      return response.json();
+  }).then(profile => {
+      if (profile) displayUserProfile(profile);
+      else displayLoggedOutProfilePage();
+  }).catch(e => {
+      if (e instanceof NetworkError) {
+        displayErrorMessage('Check internet connection');
+      } else if (e instanceof TypeError) {
+        displayErrorMessage('Something wrong with our servers');
+      } else console.error(`Unexpected error ${e}`);
+  });
