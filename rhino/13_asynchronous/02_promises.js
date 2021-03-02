@@ -77,3 +77,19 @@ fetch('api/user/profile')
         displayErrorMessage('Something wrong with our servers');
       } else console.error(`Unexpected error ${e}`);
   });
+
+
+// 5. Promises in Parallel
+const urls = ['my/url1', 'my/2nd/url', '...'];
+promises = urls.map(url => fetch(url).then(r => r.text()));
+// Run promises in parallel
+Promise.all(promises)
+  .then(bodies => { /* do whatever... */})
+  .catch(e => console.error(e));
+
+Promise.allSettled([Promise.resolve(1), Promise.reject(2), 3])
+  .then(results => {
+      results[0]; // {status: 'fulfilled, value: 1}
+      results[1]; // {status: 'rejected, reason: 2}
+      results[2]; // {status: 'fulfilled, value: 3}
+  });
