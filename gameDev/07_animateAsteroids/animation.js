@@ -16,14 +16,31 @@ let angle = 0;
 let xSpeed = W * (Math.random() - 0.5);
 let ySpeed = H * (Math.random() - 0.5);
 let rotationSpeed = 2 * Math.PI * (Math.random() - 0.5);
+let asteroid = {segments: 24,
+                shape: [],
+                radius: 50,
+                noise: 0.5,
+                x: W * (Math.random() - 0.5),
+                y: H * (Math.random() - 0.5),
+                angle: 0,
+                xSpeed: W * (Math.random() - 0.5),
+                ySpeed: H * (Math.random() - 0.5),
+                rotationSpeed: 2 * Math.PI * (Math.random() - 0.5)};
+
+for (let i = 0; i < asteroid.segments; i++) {
+  asteroid.shape.push(Math.random() - 0.5);
+}
 
 
 function draw(ctx, guide) {
   if (guide) drawGrid(ctx);
   ctx.save();
-  ctx.translate(x, y);
-  ctx.rotate(angle);
-  drawAsteroid(ctx, radius, shape, {guide: guide, noise: noise});
+  ctx.translate(asteroid.x, asteroid.y);
+  ctx.rotate(asteroid.angle);
+  drawAsteroid(ctx,
+               asteroid.radius,
+               asteroid.shape,
+               {guide: guide, noise: asteroid.noise});
   ctx.restore();
 }
 
@@ -69,13 +86,22 @@ function drawGuide(ctx, r, options) {
 
 
 function update(elapsed) {
-  if (x - radius + elapsed*xSpeed > W) x = -radius;
-  if (x + radius + elapsed*xSpeed < 0) x = W + radius;
-  if (y - radius + elapsed*ySpeed > H) y = -radius;
-  if (y + radius + elapsed*ySpeed < 0) y = H + radius;
-  x += elapsed * xSpeed;
-  y += elapsed * ySpeed;
-  angle = (angle + elapsed*rotationSpeed) % (2 * Math.PI);
+  if (asteroid.x - asteroid.radius + elapsed*asteroid.xSpeed > W) {
+    asteroid.x = -asteroid.radius;
+  }
+  if (asteroid.x + asteroid.radius + elapsed*asteroid.xSpeed < 0) {
+    asteroid.x = W + asteroid.radius;
+  }
+  if (asteroid.y - asteroid.radius + elapsed*asteroid.ySpeed > H) {
+    asteroid.y = -asteroid.radius;
+  }
+  if (asteroid.y + asteroid.radius + elapsed*asteroid.ySpeed < 0) {
+    asteroid.y = H + asteroid.radius;
+  }
+  asteroid.x += elapsed * asteroid.xSpeed;
+  asteroid.y += elapsed * asteroid.ySpeed;
+  asteroid.angle = ((asteroid.angle + elapsed*asteroid.rotationSpeed)
+                    % (2 * Math.PI));
 }
 
 
