@@ -37,6 +37,20 @@ function drawGuide(ctx, r, options) {
 }
 
 
+function Asteroid(segments, radius, noise) {
+  this.x = W * Math.random();
+  this.y = H * Math.random();
+  this.angle = 0;
+  this.xSpeed = W * (Math.random() - 0.5);
+  this.ySpeed = H * (Math.random() - 0.5);
+  this.rotationSpeed = 2 * Math.PI * (Math.random() - 0.5);
+  this.radius = radius;
+  this.noise = noise;
+  this.shape = [];
+  for (let i = 0; i < segments; i++) this.shape.push(Math.random() - 0.5);
+}
+
+
 function drawAsteroidBasic(ctx, r, segments, options) {
   ctx, options = setOptions(ctx, options);
   ctx.save();
