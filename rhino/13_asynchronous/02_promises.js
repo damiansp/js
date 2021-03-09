@@ -93,3 +93,16 @@ Promise.allSettled([Promise.resolve(1), Promise.reject(2), 3])
       results[1]; // {status: 'rejected, reason: 2}
       results[2]; // {status: 'fulfilled, value: 3}
   });
+
+
+// 6. Making Promises
+function wait(duration) {
+  // Create and return a new Promise
+  return new Promise((resolve, reject) => {
+      if (duration < 0) reject(new Error("Cannot go back in time"));
+      // Else wait asynchronously and then resolve.  setTimeout() will invoke
+      // resolve() with no args, so Promise will fulfill with undefined val
+      setTimeout(resolve, duration);
+  });
+}
+
