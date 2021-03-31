@@ -51,6 +51,35 @@ function Asteroid(segments, radius, noise) {
 }
 
 
+Asteroid.prototype.update = function(elapsed) {
+  let dx = elapsed * this.xSpeed;
+  let dy = elapsed * this.ySpeed;
+  if (this.x - this.radius + dx > W) this.x = -this.radius;
+  if (this.x + this.radius + dx < 0) this.x = W + this.radius;
+  if (this.y - this.radius + dy > H) this.y = -this.radius;
+  if (this.y + this.radius + dy < 0) this.y = H + this.radius;
+  this.x += dx;
+  this.y += dy;
+  this.angle = (this.angle + this.rotationSpeed*elapsed) % (2 * Math.PI);
+};
+
+function update(elapsed) { asteroid.update(elapsed); }
+
+
+Asteroid.prototype.draw = function(ctx, guide) {
+  ctx.save();
+  ctx.translate(this.x, this.y);
+  ctx.rotate(this.angle);
+  drawAsteroid(ctx, this.radius, this.shape, {guide: guide, noise: this.noise});
+  ctx.restore();
+};
+  
+function draw(ctx, guide) {
+  if (guide) drawGrid(ctx);
+  asteroid.draw(ctx, guide);
+}
+
+
 function drawAsteroidBasic(ctx, r, segments, options) {
   ctx, options = setOptions(ctx, options);
   ctx.save();
