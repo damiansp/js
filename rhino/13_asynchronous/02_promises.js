@@ -1,3 +1,6 @@
+const http = require('http');
+
+
 // 1. Using Promises
 getJSON(url).then(jsonData => {
     // This is a callback function that will be asynchronously invoked with the
@@ -41,7 +44,7 @@ fetch('/api/user/profile')
   .then(profile => { displayUserProfile(profile) });
 
 
-
+vv
 // 3. Resolving Promises
 function c1(response) {      // callback 1
   let p4 = response.json();  // promise 4
@@ -106,3 +109,50 @@ function wait(duration) {
   });
 }
 
+
+// async getJSON from scratch
+function getJSON(url) {
+  return new Promise((resolve, reject) => {
+      let request = http.get(url, response => {
+          if (response.statusCode !== 200) {
+            reject(new Error(`HTTP status: ${response.statusCode}`));
+            response.resume(); // prevent momory leak
+          } else if (response.headers['content-type'] !== 'application/json') {
+            reject(new Error('Invalid content type'));
+            response.resume();
+          } else {
+            let body = '';
+            response.setEncoding('utf-8');
+            response.on('data', chunk => {  body += chunk; });
+            response.on('end', () => {
+                try {
+                  let parsed = JSON.parse(body);
+                  resolve(parsed);
+                } catch(e) reject(e);
+            });
+          }
+      });
+      request.on('error', error => { reject(error); });
+  });
+}
+
+
+
+// 7. Promises in Sequence
+function fetchSequentially(urls) {
+  const bodies = [];
+
+  function fetchOne(url) {
+    return fetch(url)
+      .then(response => response.text())
+      .then(body => { bodies.push(body); });
+  }
+
+  let p = Promise.resolve(undefined);
+  for (url of urls) { p = p.then(() => fetchOne(url)); }
+  return p.then(() => bodies);
+}
+
+fetchSequentially(urls)
+  .then(bodies => { /* do whatever */ })
+  .catch(e => console.error(e));
