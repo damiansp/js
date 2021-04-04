@@ -63,8 +63,6 @@ Asteroid.prototype.update = function(elapsed) {
   this.angle = (this.angle + this.rotationSpeed*elapsed) % (2 * Math.PI);
 };
 
-function update(elapsed) { asteroid.update(elapsed); }
-
 
 Asteroid.prototype.draw = function(ctx, guide) {
   ctx.save();
@@ -73,10 +71,21 @@ Asteroid.prototype.draw = function(ctx, guide) {
   drawAsteroid(ctx, this.radius, this.shape, {guide: guide, noise: this.noise});
   ctx.restore();
 };
+
+
+let asteroids = [new Asteroid(11, 30, 0.2),
+                 new Asteroid(19, 40, 0.3),
+                 new Asteroid(24, 50, 0.5)];
+
   
 function draw(ctx, guide) {
   if (guide) drawGrid(ctx);
-  asteroid.draw(ctx, guide);
+  asteroids.forEach(function(asteroid) { asteroid.draw(ctx, guide); });
+}
+
+
+function update(elapsed) {
+  asteroids.forEach(function(asteroid) {asteroid.update(elapsed); })
 }
 
 
@@ -128,20 +137,21 @@ function mainBasic(ctx) {
 }
 
 
+let previous, elapsed;
+
+
+function frame(timestamp) {
+  ctx.clearRect(0, 0, W, H);
+  if (!previous) previous = timestamp;
+  elapsed = timestamp - previous;
+  update(elapsed / 1000);
+  draw(ctx, true);
+  previous = timestamp;
+  window.requestAnimationFrame(frame);
+}
+
 function main(ctx) {
-  let segments = 15,
-    noise = 0,
-    shape = [];
-  for (let i = 0; i < segments; i++) shape.push(2 * (Math.random() - 0.5));
-  for (let y = 0.1; y < 1; y += 0.2) {
-    for (let x = 0.1; x < 1; x += 0.2) {
-      ctx.save();
-      ctx.translate(W * x, H * y);
-      drawAsteroid(ctx, W / 16, shape, {noise: noise, guide: true});
-      ctx.restore();
-      noise += 0.025;
-    }
-  }
+  window.requestAnimationFrame(frame);
 }
 
 
