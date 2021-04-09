@@ -156,3 +156,27 @@ function fetchSequentially(urls) {
 fetchSequentially(urls)
   .then(bodies => { /* do whatever */ })
   .catch(e => console.error(e));
+
+
+function promiseSequence(inputs, promiseMaker) {
+  inputs = [...inputs]; // copy to modify
+
+  function handleNextInput(outputs) {
+    if (inputs.length === 0) return outputs;
+    else {
+      let nextInput = inputs.shift();
+      return promiseMaker(nextInput)
+        .then(output => outputs.concat(output))
+        .then(handleNextInput);
+    }
+  }
+
+  return Promise.resolve([]).then(handleNextInput);
+}
+
+
+function fetchBody(url) { return fetch(url).then(r => r.text()); }
+
+promiseSequence(urls, fetchBody)
+  .then(bodies => {/* do... */} )
+  .catch(console.error);
